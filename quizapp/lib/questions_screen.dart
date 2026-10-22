@@ -1,7 +1,9 @@
 import 'dart:math';
 
 import 'package:flutter/material.dart';
+import 'package:quizapp/answer_button.dart';
 import 'package:quizapp/data/question_list.dart';
+import 'package:quizapp/question_text.dart';
 
 class QuestionsScreen extends StatefulWidget {
   const QuestionsScreen({super.key});
@@ -26,41 +28,14 @@ class _QuestionsScreenState extends State<QuestionsScreen> {
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            Text(
-              currentQuestion.questionText,
-              style: const TextStyle(
-                color: Colors.white,
-                fontSize: 24,
-                fontWeight: FontWeight.bold,
-              ),
-              textAlign: TextAlign.center,
-            ),
+            QuestionText(currentQuestion.questionText),
             const SizedBox(height: 30),
             IntrinsicWidth(
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.stretch,
                 children: [
                   ...shuffledAnswers.map((answer) {
-                    return Container(
-                      margin: const EdgeInsets.only(bottom: 10),
-                      child: ElevatedButton(
-                        onPressed: () {},
-                        style: ElevatedButton.styleFrom(
-                          foregroundColor: Colors.white,
-                          backgroundColor: const Color.fromARGB(
-                            255,
-                            78,
-                            33,
-                            150,
-                          ),
-                          padding: const EdgeInsets.symmetric(
-                            vertical: 12,
-                            horizontal: 24,
-                          ),
-                        ),
-                        child: Text(answer, textAlign: TextAlign.center),
-                      ),
-                    );
+                    return AnswerButton(answerText: answer, onTap: () {});
                   }),
                 ],
               ),
